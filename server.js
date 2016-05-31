@@ -1,18 +1,16 @@
 import fs from 'fs';
 import koa from 'koa';
+import passport from 'koa-passport';
 
 const app = module.exports = new koa();
 
-let user = {
-  username: 'username',
-  password: 'password'
-}
-
 //config
-require('./config/koaConfig.js')(app, process.env.NODE_ENV);
+import koaConfig from './config/koaConfig';
+koaConfig(app, process.env.NODE_ENV, passport);
 
 //routes
-require('./config/routes.js')(app);
+import routes from './config/routes';
+routes(app);
 
 
 // if (!module.parent) {

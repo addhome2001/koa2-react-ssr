@@ -1,15 +1,19 @@
 import { Route, IndexRoute } from 'react-router';
 import React from 'react';
-import Login from './components/Login';
+import LoginPage from './components/LoginPage';
 import Index from './components/Index';
 import About from './components/About';
 import Home from './components/Home';
+import Profile from './components/Profile';
+import Error from './components/Error';
 
 const routes = (
     <Route path="/" component={Index}>
         <IndexRoute component={Home}/>
-        <Route path='login-page' component={Login}></Route>
+        <Route path='login' component={LoginPage}></Route>
         <Route path='about' component={About}></Route>
+        <Route path='error' component={Error}></Route>        
+        <Route path='profile/:user' component={Profile}></Route>
     </Route>
 );
 

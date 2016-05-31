@@ -8,21 +8,25 @@ import conditional from 'koa-conditional-get';
 import onerror from 'koa-onerror';
 import views from 'koa-views';
 import co from 'co';
+import passportConfig from './passportConfig';
 
-module.exports = (app, env) => {
+module.exports = (app, env, passport) => {
 
     app.keys = ['secret1', 'secret2', 'secret3'];
-
-    csrf(app);
-    onerror(app);
 
     //view engine
     app.use(views('./views', { extension: 'ejs' }));
     
-    app.use(convert(session(app)))
-    app.use(parse({ limit: '10mb' }))
-    app.use(conditional())
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(convert(session(app)));
+    app.use(parse({ limit: '10mb' }));
+    app.use(conditional());
     app.use(etag());
+    
+    csrf(app);
+    onerror(app);
+    passportConfig(passport);
 
     //logger
     if(env === 'development') {
