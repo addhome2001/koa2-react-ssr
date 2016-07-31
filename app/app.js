@@ -7,14 +7,15 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import Error from './components/Error';
 
-const routes = (
-    <Route path="/" component={Index}>
-        <IndexRoute component={Home}/>
-        <Route path='login' component={LoginPage}></Route>
-        <Route path='about' component={About}></Route>
-        <Route path='error' component={Error}></Route>        
-        <Route path='profile/:user' component={Profile}></Route>
-    </Route>
-);
+const routes = (initialState) => {
+  return (
+    <Route path="/" component={Index} initialState={initialState}>
+      <IndexRoute component={Home}/>
+      <Route path='login' component={LoginPage}></Route>
+      <Route path='about' component={About}></Route>
+      <Route path='error' component={Error}></Route>
+      <Route path='profile/:user' component={Profile}></Route>
+    </Route>)
+};
 
 export default routes;

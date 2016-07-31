@@ -1,19 +1,26 @@
 import koarouter from 'koa-router';
 import routeRender from './render';
 import passport from 'koa-passport';
+import body from 'co-body';
 const router = koarouter();
 
 module.exports = (app, env) => {
-    router.get('/',routeRender)
+    router.get('/', (ctx, next) => {
+            if (!ctx.isAuthenticated()) {
+                return next();
+            }
+              ctx.redirect(`/profile/${ctx.passport.user.username}`);
+
+          }, routeRender)
     
           .get('/about', routeRender)
     
           .get('/login',(ctx, next) => {
             if (!ctx.isAuthenticated()) {
                 return next();
-            } else {
-                ctx.redirect(`/profile/${ctx.user}`);
             }
+              ctx.redirect(`/profile/${ctx.passport.user.username}`);
+
            }, routeRender)
           
           .get('/profile/:user?', (ctx, next) => {
@@ -28,20 +35,22 @@ module.exports = (app, env) => {
           
           .post('/login', (ctx, next) => {
               return passport.authenticate('local-login', async (user, info, status) => {
-                if (user === false) {
-                  ctx.status = 401
-                  ctx.body = { success: false }
-                } else {
+                if (user) {
                   await ctx.login(user);
-                  ctx.redirect(`/profile/${ctx.req.user.username}`);             
+                  ctx.redirect(`/profile/${ctx.passport.user.username}`);
+                } else {
+                  ctx.status = 401;
+                  ctx.body = { success: false }
                 }
               })(ctx, next)
           })
      
           .get('/logout', (ctx) => {
-            ctx.logout()
-            ctx.redirect('/')
-          })
+            if (ctx.isAuthenticated()) {
+              ctx.logout();
+            }
+            ctx.redirect('/');
+          });
           
     app.use(router.routes())
        .use(router.allowedMethods());

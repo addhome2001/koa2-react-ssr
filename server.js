@@ -1,4 +1,3 @@
-import fs from 'fs';
 import koa from 'koa';
 import passport from 'koa-passport';
 
@@ -13,8 +12,6 @@ import routes from './config/routes';
 routes(app);
 
 
-// if (!module.parent) {
-    app.listen(process.env.PORT || 3000, () => {
-        console.log(`Server is running at ${process.env.PORT}!`);
-    });
-// }
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running at ${process.env.PORT}!`);
+});

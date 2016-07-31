@@ -4,13 +4,17 @@ import { match, RouterContext } from 'react-router';
 import routes from '../app/app';
 
 export default async (ctx, next) => {
-   match({ routes, location: ctx.url }, async (error, redirectLocation, renderProps) => {
+   const initialState = {
+     csrf: ctx.csrf
+   };
+   match({ routes: routes(initialState), location: ctx.url }, async (error, redirectLocation, renderProps) => {
         if (error) {
           ctx.throw(500, error.message);
         } else if (redirectLocation) {
           ctx.status = 302;
           ctx.redirect(redirectLocation.pathname + redirectLocation.search);
         } else if (renderProps) {
+
           try {
               ctx.status = 200;
               ctx.state.reactContent = renderToString(<RouterContext {...renderProps} />);
@@ -25,5 +29,5 @@ export default async (ctx, next) => {
       
       await ctx.render('index', { 
         reactContent: ctx.state.reactContent
-      });  
+      });
 }

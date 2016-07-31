@@ -8,18 +8,17 @@ export default (passport) => {
     });
 
     passport.deserializeUser((user, done) => {
-        done(null, user);  
+        done(null, user);
     });
 
     passport.use('local-login', new LocalStrategy({
         usernameField: 'username',
-        passwordField: 'password'
+        passwordField: 'password',
     }, (username, password, done) => {
         if (username === 'addhome' && password === 'password') {
             done(null, { username, log: `Welcome ${username}` })
-        } else {
-            done(new Error('Invalid username/passowrd'))
         }
+        done(null)
     }));
 
 }

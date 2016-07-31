@@ -1,4 +1,3 @@
-import path from 'path';
 import parse from 'koa-bodyparser';
 import csrf from 'koa-csrf';
 import session from 'koa-session';
@@ -7,7 +6,6 @@ import etag from 'koa-etag';
 import conditional from 'koa-conditional-get';
 import onerror from 'koa-onerror';
 import views from 'koa-views';
-import co from 'co';
 import passportConfig from './passportConfig';
 
 module.exports = (app, env, passport) => {
