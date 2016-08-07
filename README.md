@@ -4,10 +4,13 @@ A simple isomorphic React for koa.
 ## install 
 
 ```
-npm install;
+npm install
 ```
 ## run 
 ```
-npm start;
+npm start
 ```
-
+## run test
+```
+npm run test
+```
