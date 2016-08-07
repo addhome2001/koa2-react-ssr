@@ -21,7 +21,7 @@ class LoginPage extends Component {
                       <label>Password</label>
                       <input className="form-control" name="password" type="password" placeholder='The password is "password"' />
                   </div>
-                  <input type="hidden" name="csrf" defaultValue={csrf} />
+                  <input type="hidden" name="_csrf" defaultValue={csrf} />
                   <button type="submit" className="btn btn-warning btn-lg">Login</button>
               </form>
               <hr/>

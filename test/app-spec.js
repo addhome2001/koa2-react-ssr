@@ -1,4 +1,3 @@
-import assert from 'assert';
 import agents from 'supertest';
 import app from '../server.js'
 
@@ -31,6 +30,7 @@ describe('Authentication', function () {
   });
 
   describe('logging in', function () {
+
     it('GET /login should render a CSRF token', function (done) {
       request.get('/login')
         .expect('Content-Type', /text\/html/)
@@ -38,7 +38,7 @@ describe('Authentication', function () {
           if (err) return done(err);
 
           var html = res.text;
-          csrf = /name="csrf" value="([^"]+)"/.exec(html)[1];
+          csrf = /name="_csrf" value="([^"]+)"/.exec(html)[1];
           done();
       })
     });
@@ -55,32 +55,33 @@ describe('Authentication', function () {
     it('POST /login should 403 with an invalid CSRF token', function (done) {
       request.post('/login')
         .send({
-          username: 'username',
+          username: 'addhome',
           password: 'password',
           csrf: 'lkjalksdjfasdf'
         })
         .expect(403, done);
     });
 
-    it('POST /login should 401 with bad auth details', function (done) {
+    it('POST /login should 403 with bad auth details', function (done) {
       request.post('/login')
         .send({
           csrf: csrf,
           username: 'klajklsdjfasdf',
           password: 'lkjlakjsdlkfja'
         })
-        .expect(401, done)
+        .expect(403, done)
     });
 
     it('POST /login should 302 with good auth details', function (done) {
       request.post('/login')
         .send({
-          csrf: csrf,
+          _csrf: csrf,
           username: 'addhome',
           password: 'password'
         })
         .expect(302)
         .expect('Location', '/profile/addhome', done);
+
     });
 
     it('GET / should return profile', function (done) {
@@ -88,7 +89,7 @@ describe('Authentication', function () {
         .expect(302)
         .expect('Location', '/profile/addhome', done);
     })
-  })
+  });
 
   describe('logging out', function () {
     it('GET /logout should 302 to /', function (done) {

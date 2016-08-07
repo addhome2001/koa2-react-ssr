@@ -1,10 +1,10 @@
 import koarouter from 'koa-router';
 import routeRender from './render';
 import passport from 'koa-passport';
-import body from 'co-body';
+
 const router = koarouter();
 
-module.exports = (app, env) => {
+module.exports = (app) => {
     router.get('/', (ctx, next) => {
             if (!ctx.isAuthenticated()) {
                 return next();
@@ -32,17 +32,24 @@ module.exports = (app, env) => {
            }, routeRender)
            
           .get('/error', routeRender)
-          
+
           .post('/login', (ctx, next) => {
-              return passport.authenticate('local-login', async (user, info, status) => {
-                if (user) {
-                  await ctx.login(user);
-                  ctx.redirect(`/profile/${ctx.passport.user.username}`);
-                } else {
+
+              if (!ctx.assertCSRF(ctx.body)) {
                   ctx.status = 401;
-                  ctx.body = { success: false }
-                }
-              })(ctx, next)
+                  ctx.body = { message: "wrong csrf token" };
+                  return next();
+              } else {
+                  return passport.authenticate('local-login', async (user) => {
+                    if (user) {
+                      await ctx.login(user);
+                      ctx.redirect(`/profile/${ctx.passport.user.username}`);
+                    } else {
+                      ctx.status = 403;
+                      ctx.body = { message: "invalid username or password" }
+                    }
+                  })(ctx, next);
+              }
           })
      
           .get('/logout', (ctx) => {
@@ -54,4 +61,4 @@ module.exports = (app, env) => {
           
     app.use(router.routes())
        .use(router.allowedMethods());
-}
+};

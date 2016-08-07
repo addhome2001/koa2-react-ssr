@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../app/app';
 
-export default async (ctx, next) => {
+export default async (ctx) => {
    const initialState = {
      csrf: ctx.csrf
    };
