@@ -1,16 +1,19 @@
 # koa-simple-isomorphic
-A simple isomorphic React for koa.
 
-## install 
+> A simple isomorphic React for koa2.
+
+[![Build Status](https://travis-ci.org/emn178/js-md5.svg?branch=master)](https://travis-ci.org/emn178/js-md5)
+
+## install
 
 ```
 npm install
 ```
-## run 
+## run
 ```
 npm start
 ```
 ## run test
 ```
-npm run test
+npm test
 ```
