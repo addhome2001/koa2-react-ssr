@@ -6,7 +6,7 @@ class About extends Component {
         return (
             <div>
               <IndexLink className="btn btn-default" Link to="/">Home</IndexLink >
-              <p>About</p>              
+              <p>About</p>         
             </div>
         );
     }

@@ -1,4 +1,4 @@
-# koa-simple-isomorphic
+# koa2-simple-isomorphic
 
 > A simple isomorphic React for koa2.
 

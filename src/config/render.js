@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
-import routes from '../app/app';
+import routes from '../routes';
 
 export default async (ctx) => {
    const initialState = {
@@ -26,8 +26,8 @@ export default async (ctx) => {
           ctx.throw(404, 'Not found');
         }
       });
-      
-      await ctx.render('index', { 
+
+      await ctx.render('index', {
         reactContent: ctx.state.reactContent
       });
 }
