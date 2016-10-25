@@ -1,5 +1,5 @@
 import agents from 'supertest';
-import app from '../server.js'
+import app from '../src/server.js';
 
 const server = app.listen();
 
