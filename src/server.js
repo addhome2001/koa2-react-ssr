@@ -8,7 +8,7 @@ import koaConfig from './config/koaConfig';
 koaConfig(app, process.env.NODE_ENV, passport);
 
 //router
-import router from './config/router';
+import router from './config/koaRouter';
 router(app);
 
 app.listen(process.env.PORT || 3000, () => {

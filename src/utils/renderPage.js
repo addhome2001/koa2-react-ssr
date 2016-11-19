@@ -4,7 +4,7 @@ import { RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import createStore from './createStore';
 
-export default renderProps => {
+export default async renderProps => {
   const { store, preloadedState } = createStore();
   const reactContent = renderToString(
     <Provider store={ store }>

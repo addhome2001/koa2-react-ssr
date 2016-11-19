@@ -16,7 +16,7 @@ export default async (ctx) => {
         } else if (renderProps) {
 
           try {
-              const { reactContent, preloadedState } = renderPage(renderProps);
+              const { reactContent, preloadedState } = await renderPage(renderProps);
               ctx.status = 200;
               ctx.state.reactContent = reactContent;
               ctx.state.preloadedState = preloadedState;

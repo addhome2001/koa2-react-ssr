@@ -2,7 +2,7 @@
 import { Strategy as LocalStrategy } from 'passport-local';
 
 export default (passport) => {
-    
+
     passport.serializeUser((user, done) => {
         done(null, user);
     });
@@ -16,9 +16,10 @@ export default (passport) => {
         passwordField: 'password',
     }, (username, password, done) => {
         if (username === 'addhome' && password === 'password') {
-            done(null, { username, log: `Welcome ${username}` })
+            done(null, { username, log: `Welcome ${username}` });
+        } else {
+            done(null);
         }
-        done(null)
     }));
 
 }
