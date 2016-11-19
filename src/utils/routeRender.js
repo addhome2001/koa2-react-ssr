@@ -1,6 +1,6 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import { match, RouterContext } from 'react-router';
+import { match } from 'react-router';
+import renderPage from './renderPage';
 import routes from '../routes';
 
 export default async (ctx) => {
@@ -16,8 +16,10 @@ export default async (ctx) => {
         } else if (renderProps) {
 
           try {
+              const { reactContent, preloadedState } = renderPage(renderProps);
               ctx.status = 200;
-              ctx.state.reactContent = renderToString(<RouterContext {...renderProps} />);
+              ctx.state.reactContent = reactContent;
+              ctx.state.preloadedState = preloadedState;
           } catch (e) {
               console.log(e);
           }
@@ -28,6 +30,7 @@ export default async (ctx) => {
       });
 
       await ctx.render('index', {
-        reactContent: ctx.state.reactContent
+        reactContent: ctx.state.reactContent,
+        preloadedState: ctx.state.preloadedState
       });
 }

@@ -1,5 +1,4 @@
 require('babel-core/register');
-require('babel-polyfill');
 
 if(process.env.NODE_ENV === 'development') {
     require('../src/server.js');

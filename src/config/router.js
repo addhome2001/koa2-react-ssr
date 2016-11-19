@@ -1,5 +1,5 @@
 import koarouter from 'koa-router';
-import routeRender from './render';
+import routeRender from '../utils/routeRender';
 import passport from 'koa-passport';
 
 const router = koarouter();
@@ -12,9 +12,9 @@ module.exports = (app) => {
               ctx.redirect(`/profile/${ctx.passport.user.username}`);
 
           }, routeRender)
-    
+
           .get('/about', routeRender)
-    
+
           .get('/login',(ctx, next) => {
             if (!ctx.isAuthenticated()) {
                 return next();
@@ -22,7 +22,7 @@ module.exports = (app) => {
               ctx.redirect(`/profile/${ctx.passport.user.username}`);
 
            }, routeRender)
-          
+
           .get('/profile/:user?', (ctx, next) => {
             if (ctx.isAuthenticated()) {
               return next()
@@ -30,7 +30,7 @@ module.exports = (app) => {
               ctx.redirect('/login');
             }
            }, routeRender)
-           
+
           .get('/error', routeRender)
 
           .post('/login', (ctx, next) => {
@@ -51,14 +51,14 @@ module.exports = (app) => {
                   })(ctx, next);
               }
           })
-     
+
           .get('/logout', (ctx) => {
             if (ctx.isAuthenticated()) {
               ctx.logout();
             }
             ctx.redirect('/');
           });
-          
+
     app.use(router.routes())
        .use(router.allowedMethods());
 };
