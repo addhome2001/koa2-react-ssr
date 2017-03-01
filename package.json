@@ -1,5 +1,5 @@
 {
-  "name": "koa2-simple-isomorphic",
+  "name": "koa2-simple-ssr",
   "version": "1.0.1",
   "description": "simple koa2 server-side-render",
   "main": "index.js",

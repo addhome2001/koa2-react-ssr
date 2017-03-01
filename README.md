@@ -1,9 +1,9 @@
-# koa2-simple-isomorphic
+# koa2-simple-ssr
 
-> A simple isomorphic React for koa2.
+> A simple React server-side-render with koa2.
 
-[![Build Status](https://travis-ci.org/emn178/js-md5.svg?branch=master)](https://travis-ci.org/emn178/js-md5)
-[![Known Vulnerabilities](https://snyk.io/test/github/addhome2001/koa-simple-isomorphic/badge.svg)](https://snyk.io/test/github/addhome2001/koa-simple-isomorphic)
+[![Build Status](https://travis-ci.org/addhome2001/koa2-simple-ssr.svg?branch=master)](https://travis-ci.org/addhome2001/koa2-simple-ssr)
+
 
 ## install
 
