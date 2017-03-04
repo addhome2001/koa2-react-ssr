@@ -47,6 +47,6 @@
     "react-redux": "^4.4.5",
     "react-router": "2.4.1",
     "redux": "^3.6.0",
-    "supertest": "1.2.0"
+    "supertest": "2.0.0"
   }
 }
