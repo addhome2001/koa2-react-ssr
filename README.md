@@ -1,9 +1,8 @@
-# koa2-simple-ssr
+# koa2-react-ssr
 
-> A simple React server-side-render with koa2.
+> React server-side-render with koa2.
 
-[![Build Status](https://travis-ci.org/addhome2001/koa2-simple-ssr.svg?branch=master)](https://travis-ci.org/addhome2001/koa2-simple-ssr)
-
+[![Build Status](https://travis-ci.org/addhome2001/koa2-react-ssr.svg?branch=master)](https://travis-ci.org/addhome2001/koa2-react-ssr)
 
 ## install
 
