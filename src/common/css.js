@@ -74,7 +74,7 @@ export const formGroup = css({
     background: 'transparent',
     width: '100%',
     textIndent: '.7rem',
-    ':WebkitAutofill': {
+    ':-webkit-autofill': {
       WebkitBoxShadow: '0 0 0 1000px white inset !important',
     },
     ':focus': {
