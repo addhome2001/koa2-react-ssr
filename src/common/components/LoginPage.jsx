@@ -8,6 +8,7 @@ const LoginPage = ({ route: { csrf } }) =>
     <form { ...form } action="/login" method="post">
       <div { ...formGroup }>
         <input
+          required
           name="username"
           type="text"
           placeholder="Username"
@@ -15,6 +16,7 @@ const LoginPage = ({ route: { csrf } }) =>
       </div>
       <div { ...formGroup }>
         <input
+          required
           name="password"
           type="password"
           placeholder="Password"
