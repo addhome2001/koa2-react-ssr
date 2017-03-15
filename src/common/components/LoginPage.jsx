@@ -1,34 +1,29 @@
 import React from 'react';
 import { IndexLink } from 'react-router';
+import { btn, mainText, form, formGroup } from '../css';
 
 const LoginPage = ({ route: { csrf } }) =>
-  <div className="col-sm-6 col-sm-offset-3">
-    <h1><span className="fa fa-sign-in" />Login</h1>
-    <form action="/login" method="post">
-      <div className="form-group">
-        <label htmlFor="username">Username</label>
+  <div>
+    <p { ...mainText }>Login</p>
+    <form { ...form } action="/login" method="post">
+      <div { ...formGroup }>
         <input
-          id="username"
-          className="form-control"
           name="username"
-          type="text" defaultValue="username"
+          type="text"
+          placeholder="Username"
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="password">Password</label>
+      <div { ...formGroup }>
         <input
-          id="password"
-          className="form-control"
           name="password"
           type="password"
-          placeholder='The password is "password"'
+          placeholder="Password"
         />
       </div>
       <input type="hidden" name="_csrf" defaultValue={ csrf } />
-      <button type="submit" className="btn btn-warning btn-lg">Login</button>
+      <button { ...btn } type="submit">Submit</button>
+      <IndexLink { ...btn } to="/">Home</IndexLink>
     </form>
-    <hr />
-    <p>Or go <IndexLink to="/">Home</IndexLink >.</p>
   </div>;
 
 export default LoginPage;

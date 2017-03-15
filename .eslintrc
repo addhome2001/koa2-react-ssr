@@ -8,6 +8,6 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/extensions": [1, { "jsx": "never", "js": "never" }],
     "no-param-reassign": [1, { "props": false }],
-    "react/prop-types": [1, { "ignore": ["params", "route"] }]
+    "react/prop-types": [1, { "ignore": ["params", "route", "vars"] }]
   }
 }

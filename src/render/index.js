@@ -17,9 +17,12 @@ export default async (ctx) => {
         ctx.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         try {
-          const reactContent = renderContent(renderProps);
+          const { html, css } = renderContent(renderProps);
           ctx.status = 200;
-          ctx.state = { reactContent };
+          ctx.state = {
+            reactContent: html,
+            css,
+          };
         } catch (e) {
           console.log(e);
         }

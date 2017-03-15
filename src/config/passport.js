@@ -14,7 +14,7 @@ export default (passport) => {
     passwordField: 'password',
   }, (username, password, done) => {
     if (username === 'username' && password === 'password') {
-      done(null, { username, log: 'You are successfully logged in.' });
+      done(null, { username, log: 'Successfully logged in.' });
     } else {
       done(null);
     }

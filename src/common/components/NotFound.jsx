@@ -1,10 +1,11 @@
 import React from 'react';
 import { IndexLink } from 'react-router';
+import { btn, mainText } from '../css';
 
 const NotFound = () =>
   <div>
-    <p className="alert alert-warning">Not Found Page</p>
-    <IndexLink className="btn btn-default" Link to="/">Home</IndexLink >
+    <p { ...mainText }>Not Found Page</p>
+    <IndexLink { ...btn } to="/">Home</IndexLink >
   </div>;
 
 export default NotFound;

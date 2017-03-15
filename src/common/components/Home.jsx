@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { btn } from '../css';
 
 const Home = () =>
   <div>
-    <Link to="/login" className="btn btn-default">
-      Local Login
+    <Link { ...btn } to="/login">
+      Login
     </Link>
-    &nbsp;
-    <Link to="/about" className="btn btn-default">
+    <Link { ...btn } to="/about" >
       About
     </Link>
   </div>;
