@@ -9,8 +9,9 @@
     "test": "./node_modules/.bin/mocha --opts .mocharc ./test/*-spec.js",
     "lint": "./node_modules/.bin/eslint .",
     "validate": "npm run lint && npm test",
+    "clear": "rimraf dist",
     "debug": "cross-env DEBUG=* npm start",
-    "build": "cross-env NODE_ENV=production babel src -d dist --copy-files",
+    "build": "npm run clear && cross-env NODE_ENV=production babel src -d dist --copy-files",
     "serve": "npm run build && node dist/app.js"
   },
   "keywords": [],
