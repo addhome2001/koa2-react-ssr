@@ -1,0 +1,4 @@
+{
+  "exec": "babel-node",
+  "ext": "js, jsx"
+}

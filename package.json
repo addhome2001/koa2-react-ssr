@@ -2,9 +2,9 @@
   "name": "koa2-react-ssr",
   "version": "1.0.1",
   "description": "react server-side-render with koa2",
-  "main": "index.js",
+  "main": "dist/app",
   "scripts": {
-    "start": "nodemon src/app.js -e jsx,js --exec babel-node",
+    "start": "nodemon src --config",
     "test:watch": "nodemon ./node_modules/.bin/mocha --opts .mocharc ./test/*-spec.js",
     "test": "./node_modules/.bin/mocha --opts .mocharc ./test/*-spec.js",
     "lint": "./node_modules/.bin/eslint .",
@@ -12,7 +12,7 @@
     "clear": "rimraf dist",
     "debug": "cross-env DEBUG=* npm start",
     "build": "npm run clear && cross-env NODE_ENV=production babel src -d dist --copy-files",
-    "serve": "npm run build && node dist/app.js"
+    "serve": "node dist"
   },
   "keywords": [],
   "author": "",
