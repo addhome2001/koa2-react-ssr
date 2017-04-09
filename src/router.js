@@ -25,7 +25,7 @@ router
     }
   })
   .get('/error')
-  .post('/login', (ctx, next) => {
+  .post('/login', (ctx) => {
     if (ctx.assertCSRF(ctx.body)) {
       return passport.authenticate('local-login', async (user) => {
         if (user) {
@@ -34,7 +34,7 @@ router
         } else {
           ctx.redirect('/error');
         }
-      })(ctx, next);
+      })(ctx);
     }
     ctx.status = 401;
     ctx.body = { message: 'wrong csrf token' };
@@ -44,6 +44,10 @@ router
       ctx.logout();
     }
     ctx.redirect('/');
+  })
+  .get('/favicon.ico', (ctx) => {
+    ctx.status = 200;
+    ctx.body = null;
   });
 
 export default router;

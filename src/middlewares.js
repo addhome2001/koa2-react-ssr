@@ -10,6 +10,7 @@ import logger from 'koa-logger';
 import body from 'koa-bodyparser';
 import passport from 'koa-passport';
 import koaStatic from 'koa-static-server';
+
 import auth from './config/passport';
 
 module.exports = (app) => {

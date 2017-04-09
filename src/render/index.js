@@ -3,7 +3,7 @@ import { match } from 'react-router';
 import renderContent from './renderContent';
 import routes from '../common/routes';
 
-export default async (ctx) => {
+export default async (ctx, next) => {
   const initialState = {
     csrf: ctx.csrf || '',
     user: ctx.passport.user || {},
@@ -30,5 +30,8 @@ export default async (ctx) => {
         ctx.throw(404, 'Not found');
       }
     });
+
+  // set cache-key
+  await next();
   await ctx.render('index', ctx.state);
 };
