@@ -1,6 +1,6 @@
 import path from 'path';
 import CSRF from 'koa-csrf';
-import session from 'koa-session';
+import session from 'koa-generic-session';
 import convert from 'koa-convert';
 import etag from 'koa-etag';
 import conditional from 'koa-conditional-get';
@@ -14,7 +14,9 @@ import koaStatic from 'koa-static-server';
 import auth from './config/passport';
 
 module.exports = (app) => {
+  // session
   app.keys = ['secret1', 'secret2', 'secret3'];
+  app.use(convert(session()));
 
   // logger
   app.use(logger());
@@ -32,7 +34,6 @@ module.exports = (app) => {
   app.use(passport.session());
   auth(passport);
 
-  app.use(convert(session(app)));
   app.use(conditional());
   app.use(etag());
   app.use(body());
