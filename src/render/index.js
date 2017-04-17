@@ -6,7 +6,7 @@ import routes from '../common/routes';
 export default async (ctx, next) => {
   const initialState = {
     csrf: ctx.csrf || '',
-    user: ctx.passport.user || {},
+    user: ctx.state.user || {},
   };
   match({ routes: routes(initialState), location: ctx.url },
     (error, redirectLocation, renderProps) => {

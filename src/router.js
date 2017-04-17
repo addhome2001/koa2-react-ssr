@@ -27,8 +27,8 @@ router
   .get('/error')
   .post('/login', (ctx) => {
     if (ctx.assertCSRF(ctx.body)) {
-      return passport.authenticate('local-login', async (user) => {
-        if (user) {
+      return passport.authenticate('local-login', async (err, user) => {
+        if (user && !err) {
           await ctx.login(user);
           ctx.redirect('/profile');
         } else {

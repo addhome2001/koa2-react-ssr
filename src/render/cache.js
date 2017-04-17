@@ -13,7 +13,7 @@ export async function renderCache(ctx, next) {
   const key = getCacheKey(ctx);
 
   if (ssrCache.has(key)) {
-    console.log('Rendering cached view.');
+    console.log('View cached.');
     await ctx.render('index', ssrCache.get(key));
   } else {
     await next();

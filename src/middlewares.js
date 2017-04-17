@@ -1,5 +1,5 @@
 import path from 'path';
-import csrf from 'koa-csrf';
+import CSRF from 'koa-csrf';
 import session from 'koa-session';
 import convert from 'koa-convert';
 import etag from 'koa-etag';
@@ -42,7 +42,7 @@ module.exports = (app) => {
     await next();
   });
 
-  app.use(csrf());
+  app.use(new CSRF());
 
   onerror(app);
 };
