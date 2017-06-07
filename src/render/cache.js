@@ -17,10 +17,10 @@ export function setCacheKey(key, content) {
 export default function (ctx, matchRoutes) {
   const key = getCacheKey(ctx);
 
-  if (!ssrCache.has(key)) {
-    console.log('View cached.');
-    return setCacheKey(key, matchRoutes(ctx));
+  if (ssrCache.has(key)) {
+    console.log('Render cached.');
+    return ssrCache.get(key);
   }
-  console.log('Render cached.');
-  return ssrCache.get(key);
+  console.log('View cached.');
+  return setCacheKey(key, matchRoutes(ctx));
 }
