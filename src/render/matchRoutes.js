@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { match } from 'react-router';
-import renderContent from './renderStatic';
+import renderMarkup from './renderMarkup';
 import routes from '../common/routes';
 
 export default function (ctx) {
@@ -18,7 +18,7 @@ export default function (ctx) {
         ctx.redirect(redirectLocation.pathname + redirectLocation.search);
       } else if (renderProps) {
         try {
-          content = renderContent(renderProps);
+          content = renderMarkup(renderProps);
         } catch (e) {
           console.log(e);
         }

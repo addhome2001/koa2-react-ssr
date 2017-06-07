@@ -6,8 +6,10 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60,
 });
 
-export const getCacheKey = ctx =>
-  `secret-${ctx.session.secret}-url-${ctx.url}`;
+export function getCacheKey(ctx) {
+  const state = ctx.isAuthenticated() ? 'isAuth' : '';
+  return `${ctx.session.secret}-${ctx.url}-${state}`;
+}
 
 export function setCacheKey(key, content) {
   ssrCache.set(key, content);
