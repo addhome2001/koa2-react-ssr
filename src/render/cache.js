@@ -9,17 +9,18 @@ const ssrCache = new LRUCache({
 export const getCacheKey = ctx =>
   `secret-${ctx.session.secret}-url-${ctx.url}`;
 
-export async function renderCache(ctx, next) {
-  const key = getCacheKey(ctx);
-
-  if (ssrCache.has(key)) {
-    console.log('View cached.');
-    await ctx.render('index', ssrCache.get(key));
-  } else {
-    await next();
-  }
+export function setCacheKey(key, content) {
+  ssrCache.set(key, content);
+  return content;
 }
 
-export function setCacheKey(ctx) {
-  ssrCache.set(getCacheKey(ctx), ctx.state);
+export default function (ctx, matchRoutes) {
+  const key = getCacheKey(ctx);
+
+  if (!ssrCache.has(key)) {
+    console.log('View cached.');
+    return setCacheKey(key, matchRoutes(ctx));
+  }
+  console.log('Render cached.');
+  return ssrCache.get(key);
 }
