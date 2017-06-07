@@ -13,9 +13,11 @@ export const container = attrs => css({
 });
 
 export const content = attrs => css({
-  position: 'relative',
+  position: 'absolute',
   top: '50%',
   width: '40%',
+  left: 0,
+  right: 0,
   margin: 'auto',
   transform: 'translateY(-50%)',
   ' > .title': {
