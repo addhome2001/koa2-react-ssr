@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import matchRoutes from './matchRoutes';
 import cache from './cache';
 
