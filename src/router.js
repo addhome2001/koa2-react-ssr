@@ -4,7 +4,7 @@ import passport from 'koa-passport';
 
 const router = Router();
 
-// redirect to profile if user is authenticated.
+// redirect to profile if the user has been authenticated.
 const userAuth = async (ctx, next) => {
   if (ctx.isAuthenticated()) {
     ctx.redirect('/profile');
